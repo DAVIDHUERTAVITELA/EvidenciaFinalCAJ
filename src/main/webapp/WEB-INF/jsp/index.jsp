@@ -1,74 +1,44 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="jakarta.servlet.http.Cookie" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
 <html>
 <head>
-    <title>Triángulo Isósceles</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Información del Estudiante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #0073aa;
+        }
+        p {
+            font-size: 16px;
+        }
+        strong {
+            color: #333;
+        }
+    </style>
 </head>
-<body class="bg-light p-4">
-
-<div class="container">
-    <h1 class="text-center mb-4">Cálculo de Triángulo Isósceles</h1>
-
-    <%
-        HttpSession sesion = request.getSession();
-        String usuario = (String) sesion.getAttribute("usuario");
-        if (usuario == null) {
-    %>
-    <form action="calcularTriangulo" method="post" class="mb-3">
-        <div class="mb-3">
-            <label class="form-label">Por favor, ingresa tu nombre:</label>
-            <input type="text" class="form-control" name="nombre" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar nombre y continuar</button>
-    </form>
-    <%
-    } else {
-    %>
-    <h3 class="text-success">¡Bienvenido de nuevo, <%= usuario %>!</h3>
-    <%
-        }
-    %>
-
-    <%
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            String base = null, altura = null, area = null, perimetro = null;
-            for (Cookie c : cookies) {
-                switch (c.getName()) {
-                    case "base": base = c.getValue(); break;
-                    case "altura": altura = c.getValue(); break;
-                    case "area": area = c.getValue(); break;
-                    case "perimetro": perimetro = c.getValue(); break;
-                }
-            }
-            if (base != null) {
-    %>
-    <div class="alert alert-info">
-        <strong>Último cálculo guardado:</strong><br>
-        Base: <%= base %><br>
-        Altura: <%= altura %><br>
-        Área: <%= area %><br>
-        Perímetro: <%= perimetro %>
-    </div>
-    <%
-            }
-        }
-    %>
-
-    <form action="calcularTriangulo" method="post" class="card p-3 shadow-sm">
-        <div class="mb-3">
-            <label class="form-label">Base:</label>
-            <input type="number" name="base" step="0.01" required class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Altura:</label>
-            <input type="number" name="altura" step="0.01" required class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success w-100">Calcular</button>
-    </form>
+<body>
+<div class="card">
+    <h1>Información del Estudiante</h1>
+    <p><strong>Nombre:</strong> DAVID HUERTA VITELA</p>
+    <p><strong>Matrícula:</strong> 03074239</p>
+    <p><strong>Escuela:</strong> UNIVERSIDAD TECMILENIO</p>
+    <p><strong>Materia:</strong> COMPUTACIÓN AVANZADA DE JAVA</p>
+    <p><strong>Profesor:</strong> José Alfredo Jiménez Hernández</p>
 </div>
 </body>
 </html>
